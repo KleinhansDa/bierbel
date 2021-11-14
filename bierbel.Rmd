@@ -2,14 +2,13 @@
 title: 'Die Bierbel'
 subtitle: 'Das geschriebe Wort des Biermam'
 author: 
-- name: 'aufgearbeitet von'
-- name: 'Bruder David'
+- name: 'aufgearbeitet von Bruder David'
 date: "`r format(Sys.Date(), '%d.%m.%y')`"
 output: 
   bookdown::html_document2:
     css: html/style.css
     toc: true
-    toc_depth: 4
+    toc_depth: 2
     code_folding: 'none'
     number_sections: false
     toc_float: 
@@ -19,7 +18,7 @@ output:
       after_body: html/footer.html
 ---
 
-```{r setup, include=F, message=F, warning=F}
+```{r init, include=F, message=F, warning=F}
 knitr::opts_chunk$set(echo = F)
 
 library(tidyverse)
@@ -35,13 +34,19 @@ group_pos <- data %>% distinct(pos) %>% pull() %>% sort()
 labels <- NULL
 ```
 
+# Vorwort {-}
+
+# Inhalt
+
 ```{r}
 create_section <- function() {
   # "## Title (auto)"
   pandoc.p('\n')
   pandoc.header(paste('Wort', pos_no), level = 2)
-  
-  pandoc.p(data %>% filter(pos == pos_no) %>% pull(message) %>% cat())
+  pandoc.header('Frage', level = 3)
+  pandoc.p(data %>% filter(pos == pos_no) %>% pull(question) %>% paste('>', .))
+  pandoc.header('Antwort', level = 3)
+  pandoc.p(data %>% filter(pos == pos_no) %>% pull(message) %>% paste('>', .))
 }
 ```
 
