@@ -1,0 +1,56 @@
+---
+title: 'Die Bierbel'
+subtitle: 'Das geschriebe Wort des Biermam'
+author: 
+- name: 'aufgearbeitet von'
+- name: 'Bruder David'
+date: "`r format(Sys.Date(), '%d.%m.%y')`"
+output: 
+  bookdown::html_document2:
+    css: html/style.css
+    toc: true
+    toc_depth: 4
+    code_folding: 'none'
+    number_sections: false
+    toc_float: 
+      collapsed: true
+      smooth_scroll: true
+    includes:
+      after_body: html/footer.html
+---
+
+```{r setup, include=F, message=F, warning=F}
+knitr::opts_chunk$set(echo = F)
+
+library(tidyverse)
+library(googlesheets4)
+library(pander)
+library(bookdown)
+
+googlesheets4::gs4_deauth()
+data <- read_sheet('1XfbpNN7E1uId8dHC8KYks95R4Gd2gfM6ajKpvTTN2ag')
+
+group_type <- data %>% distinct(type) %>% pull() %>% sort()
+group_pos <- data %>% distinct(pos) %>% pull() %>% sort()
+labels <- NULL
+```
+
+```{r}
+create_section <- function() {
+  # "## Title (auto)"
+  pandoc.p('\n')
+  pandoc.header(paste('Wort', pos_no), level = 2)
+  
+  pandoc.p(data %>% filter(pos == pos_no) %>% pull(message) %>% cat())
+}
+```
+
+```{r, results = 'asis'}
+for (pos_no in group_pos) {
+   create_section()
+}
+```
+
+
+
+

@@ -1,0 +1,160 @@
+#TOC::before {
+  content: "";
+  display: block;
+  height: 200px;
+  margin: 0em 0px 0px 0px;
+  background-image: url("flagge_small.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* TOC stuff */
+
+.row-fluid{
+  display: flex; /* Necessary for sticky TOC*/
+}
+   
+.tocify {
+  /*position: -webkit-sticky;
+  position: sticky;*/ 
+  top: 0px; /*Controls where TOC stops when sticky */
+  width: 100% !important;
+  border: none;
+}
+
+.list-group-item {
+  color: #7b8a8b;
+  font-size: 20px;
+}
+
+.list-group-item.active {
+  color: #2c3e50;
+  background-color: white;
+  border: none;
+}
+
+.list-group-item:hover, 
+.list-group-item.active:hover {
+  color: #131b23;
+  background-color: white;
+}
+
+/* TOC stuff end */
+
+.subtitle {
+  margin-top: 10px;
+  padding-top: 10px;
+  color: #025481;
+  line-height: 1.5;
+}
+
+body{
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+  color: black;
+  background-size: cover;
+  background-attachment: fixed;
+  }
+  
+td {
+  font-size: 11px;
+  font-family: Arial;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 84px;
+}
+
+h1.title {
+  text-align: left;
+  font-weight: bold;
+  max-width: 90%;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(65, 65, 65);
+  padding-bottom: 3px;
+}
+
+h2 {
+  font-size: 	24px;
+  font-weight: 	bold;
+}
+
+h3 {
+  font-size: 	18px;
+  font-weight: 	bold;
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  background-color: darkgrey;
+  color: cornsilk;
+}
+
+code.block {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    background-color: darkgrey;
+    color: cornsilk;
+  }
+
+img { 
+  max-width: 10%;
+}
+
+pre {
+  font-size: 	14px;
+}
+
+@media screen {
+  body {
+    background-color: var(--background);
+    margin: var(--screen-pages-spacing) auto 0 auto;
+  }
+  
+  .pagedjs_pages {
+    display: flex;
+@@ -91,16 +93,23 @@ code {
+    box-shadow: 0 0 0 1px var(--color-mbox);
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin: auto auto 5mm auto;
+    margin: auto auto var(--screen-pages-spacing) auto;
+  }
+}
+
+/* when a row can hold two pages, start first page on the right */
+@media (min-width: 12.32in) {
+  .pagedjs_page {
+    margin: auto 0 5mm 0;
+    margin: auto 0 var(--screen-pages-spacing) 0;
+  }
+  
+  .pagedjs_first_page {
+    margin-left: var(--width);
+  }
+}
+
+/* use a fixed width body for mobiles */
+@media screen and (max-width:1180px)  {
+  body {
+    width: calc(var(--width) + 2 * var(--screen-pages-spacing));
+  }
+}
+
+div.figure {
+  width: 80%;
+  text-align: left;
+  font-style: italic;
+  font-size: smaller;
+  text-indent: 0;
+}
+.clearfix {
+  overflow: auto;
+}
