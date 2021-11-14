@@ -1,1 +1,1 @@
-"# Die Bierbel" 
+# Die Bierbel
