@@ -3,7 +3,7 @@ title: 'Die Bierbel'
 subtitle: 'Das geschriebe Wort des Biermam'
 author: 
 - name: 'aufgearbeitet von Bruder David'
-date: "`r format(Sys.Date(), '%d.%m.%y')`"
+date: "`r paste('am', format(Sys.Date(), '%d.%m.%y'))`"
 #cover-image: 'html/flagge_small.png'
 output_dir: 'bierbel'
 output: 
@@ -20,10 +20,9 @@ output:
       sharing:
         all: ['facebook', 'twitter']
       info: true
-      #download: ["book.pdf", "PDF"]
 ---
 
-# Allahu Akbier {-}
+# Vorwort {-}
 
 ```{r logo, include=T, echo=FALSE, fig.align='center'}
 knitr::include_graphics('html/flagge_small.png')
@@ -45,17 +44,15 @@ group_pos <- data %>% distinct(pos) %>% pull() %>% sort()
 labels <- NULL
 ```
 
-# Vorwort
-
 > Wäre schon wenn der Biermam hier ein Vorwort schreiben könnte
 
-# Inhalt
+# Inhalt {-}
 
 ```{r}
 create_section <- function() {
   # "## Title (auto)"
   pandoc.p('\n')
-  pandoc.header(paste('Wort', pos_no), level = 2)
+  pandoc.header(paste('Wort', pos_no, '{-}'), level = 2)
   
   pandoc.header(paste('Frage {-}'), level = 3)
   
@@ -74,5 +71,6 @@ create_section <- function() {
 ```{r, results = 'asis'}
 for (pos_no in group_pos) {
   create_section()
+  pander::pandoc.horizontal.rule()
 }
 ```
